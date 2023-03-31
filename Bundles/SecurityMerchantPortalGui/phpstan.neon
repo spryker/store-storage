@@ -1,5 +1,0 @@
-parameters:
-    level: 8
-    reportUnmatchedIgnoredErrors: false
-    ignoreErrors:
-        - '#Parameter \#3 \$firewallName of class Symfony\\Component\\Security\\Core\\Authentication\\Token\\UsernamePasswordToken constructor expects string, array\<int, string\> given.#'

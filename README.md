@@ -1,15 +1,15 @@
-# Spryker Commerce OS
+# StoreStorage Module
+[![Latest Stable Version](https://poser.pugx.org/spryker/store-storage/v/stable.svg)](https://packagist.org/packages/spryker/store-storage)
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%208.0-8892BF.svg)](https://php.net/)
 
-## Core Modules
+Manages storage for store entities.
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/spryker/spryker-core/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/spryker/spryker-core/?branch=master)
-[![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%208.0-8892BF.svg)](https://php.net/)
+## Installation
 
-This is a mono-repo of our Spryker modules.
-If you want to make a PR with suggested changes, please do so in the specific module repository
-`https://github.com/spryker/{module-name}`.
+```
+composer require spryker/store-storage
+```
 
-### Links
-- **[Spryker Documentation](https://docs.spryker.com/)**
+## Documentation
 
-
+[Spryker Documentation](https://docs.spryker.com)

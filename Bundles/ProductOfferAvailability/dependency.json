@@ -1,6 +1,0 @@
-{
-    "include": {
-        "spryker/transfer": "Provides transfer objects decimal property type functionality.",
-        "spryker/product-offer": "Added for future compatibility."
-    }
-}

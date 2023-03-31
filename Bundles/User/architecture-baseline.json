@@ -1,9 +1,0 @@
-[
-    {
-        "fileName": "src/Spryker/Zed/User/Business/UserFacade.php",
-        "description": "Zed Business Layer - Facade: The method `Spryker\\Zed\\User\\Business\\UserFacade::setCurrentUser()()` is using an invalid return type `mixed` which violates the rule \"Every Facade should only return native types or transfer objects.\"",
-        "rule": "FacadeReturnValueRule",
-        "ruleset": "Spryker Zed",
-        "priority": "1"
-    }
-]

@@ -1,4 +1,0 @@
-parameters:
-    level: 8
-    ignoreErrors:
-        - '#Method .+ should return .+Query but returns .+Criteria#'
