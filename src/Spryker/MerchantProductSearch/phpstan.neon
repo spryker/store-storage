@@ -1,7 +1,0 @@
-parameters:
-    level: 7
-    checkMissingIterableValueType: false
-    ignoreErrors:
-        - '#Call to an undefined method .+SpyMerchantQuery\|.+SpyStoreQuery::filterByIsActive\(\).#'
-    excludePaths:
-        - '%rootDir%/../../../vendor/spryker/spryker/Bundles/MerchantProductSearch/src/Spryker/Client/MerchantProductSearch/Plugin/Search/MerchantReferenceQueryExpanderPlugin.php'

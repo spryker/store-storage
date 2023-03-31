@@ -1,6 +1,0 @@
-{
-    "include": {
-        "spryker/transfer": "Provides transfer objects definition with `::get*OrFail()` functionality.",
-        "spryker/zed-ui": "If you want to use Zed Ui layout templates."
-    }
-}

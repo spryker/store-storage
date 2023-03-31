@@ -1,6 +1,0 @@
-parameters:
-    level: 7
-    checkMissingIterableValueType: false
-    ignoreErrors:
-        - '#Call to an undefined method .+PropelConditionalProxy::filterByFkStore\(\).#'
-        - '#Call to an undefined method .+PropelConditionalProxy::filterByFkCurrency\(\).#'

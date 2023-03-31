@@ -1,5 +1,0 @@
-{
-    "include": {
-        "spryker/merchant-product-offer": "MerchantProductOffer provides merchant in product offer."
-    }
-}
