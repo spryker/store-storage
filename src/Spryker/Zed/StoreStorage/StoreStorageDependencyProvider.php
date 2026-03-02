@@ -33,11 +33,6 @@ class StoreStorageDependencyProvider extends AbstractBundleDependencyProvider
      */
     public const FACADE_SYNCHRONIZATION = 'FACADE_SYNCHRONIZATION';
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     public function provideBusinessLayerDependencies(Container $container): Container
     {
         $container = parent::provideBusinessLayerDependencies($container);
@@ -48,11 +43,6 @@ class StoreStorageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     public function provideCommunicationLayerDependencies(Container $container): Container
     {
         $container = parent::provideCommunicationLayerDependencies($container);
@@ -62,11 +52,6 @@ class StoreStorageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addStoreFacade(Container $container): Container
     {
         $container->set(static::FACADE_STORE, function (Container $container) {
@@ -78,11 +63,6 @@ class StoreStorageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addEventBehaviorFacade(Container $container): Container
     {
         $container->set(static::FACADE_EVENT_BEHAVIOR, function (Container $container) {
@@ -94,11 +74,6 @@ class StoreStorageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addSynchronizationFacade(Container $container): Container
     {
         $container->set(static::FACADE_SYNCHRONIZATION, function (Container $container) {

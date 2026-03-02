@@ -12,11 +12,6 @@ use Generated\Shared\Transfer\StoreCriteriaTransfer;
 
 interface StoreStorageToStoreFacadeInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\StoreCriteriaTransfer $storeCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\StoreCollectionTransfer
-     */
     public function getStoreCollection(StoreCriteriaTransfer $storeCriteriaTransfer): StoreCollectionTransfer;
 
     /**

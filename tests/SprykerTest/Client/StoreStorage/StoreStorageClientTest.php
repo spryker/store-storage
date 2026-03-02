@@ -53,17 +53,11 @@ class StoreStorageClientTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     public function setUp(): void
     {
         parent::setUp();
     }
 
-    /**
-     * @return void
-     */
     public function testFindStoreByNameReturnsStoreStorage(): void
     {
         // Arrange
@@ -90,9 +84,6 @@ class StoreStorageClientTest extends Unit
         $this->assertSame($storeStorageTransfer->getStoresWithSharedPersistence(), $foundStoreStorageTransfer->getStoresWithSharedPersistence());
     }
 
-    /**
-     * @return void
-     */
     public function testFindStoreByNameWithInvalidName(): void
     {
         // Arrange
@@ -106,11 +97,6 @@ class StoreStorageClientTest extends Unit
         $this->assertNull($foundStoreStorageTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\StoreStorageTransfer|null $storeStorageTransfer
-     *
-     * @return void
-     */
     protected function setStorageClientMock(?StoreStorageTransfer $storeStorageTransfer = null): void
     {
         $returnData = $storeStorageTransfer ? $storeStorageTransfer->toArray() : null;

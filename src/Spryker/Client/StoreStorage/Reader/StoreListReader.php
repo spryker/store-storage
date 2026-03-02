@@ -24,10 +24,6 @@ class StoreListReader
      */
     protected $storageClient;
 
-    /**
-     * @param \Spryker\Client\StoreStorage\Dependency\Service\StoreStorageToSynchronizationServiceInterface $synchronizationService
-     * @param \Spryker\Client\StoreStorage\Dependency\Client\StoreStorageToStorageClientInterface $storageClient
-     */
     public function __construct(
         StoreStorageToSynchronizationServiceInterface $synchronizationService,
         StoreStorageToStorageClientInterface $storageClient
@@ -48,9 +44,6 @@ class StoreListReader
         return $storeData['stores'] ?? [];
     }
 
-    /**
-     * @return string
-     */
     protected function generateKey(): string
     {
         $synchronizationDataTransfer = new SynchronizationDataTransfer();

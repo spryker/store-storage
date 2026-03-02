@@ -18,9 +18,6 @@ use Spryker\Client\StoreStorage\Reader\StoreStorageReaderInterface;
 
 class StoreStorageFactory extends AbstractFactory
 {
-    /**
-     * @return \Spryker\Client\StoreStorage\Reader\StoreStorageReaderInterface
-     */
     public function createStoreStorageReader(): StoreStorageReaderInterface
     {
         return new StoreStorageReader(
@@ -29,9 +26,6 @@ class StoreStorageFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Client\StoreStorage\Reader\StoreListReader
-     */
     public function createStoreListReader(): StoreListReader
     {
         return new StoreListReader(
@@ -40,25 +34,16 @@ class StoreStorageFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Client\StoreStorage\Dependency\Service\StoreStorageToSynchronizationServiceInterface
-     */
     public function getSynchronizationService(): StoreStorageToSynchronizationServiceInterface
     {
         return $this->getProvidedDependency(StoreStorageDependencyProvider::SERVICE_SYNCHRONIZATION);
     }
 
-    /**
-     * @return \Spryker\Client\StoreStorage\Dependency\Client\StoreStorageToStorageClientInterface
-     */
     public function getStorageClient(): StoreStorageToStorageClientInterface
     {
         return $this->getProvidedDependency(StoreStorageDependencyProvider::CLIENT_STORAGE);
     }
 
-    /**
-     * @return \Spryker\Client\StoreStorage\Expander\StoreExpanderInterface
-     */
     public function createStoreExpander(): StoreExpanderInterface
     {
         return new StoreExpander(

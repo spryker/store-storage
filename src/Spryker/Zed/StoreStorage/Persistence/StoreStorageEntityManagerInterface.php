@@ -11,11 +11,6 @@ use Generated\Shared\Transfer\StoreStorageTransfer;
 
 interface StoreStorageEntityManagerInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\StoreStorageTransfer $storeStorageTransfer
-     *
-     * @return void
-     */
     public function updateStoreStorage(StoreStorageTransfer $storeStorageTransfer): void;
 
     /**

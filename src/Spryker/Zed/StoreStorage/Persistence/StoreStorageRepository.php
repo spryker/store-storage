@@ -72,12 +72,6 @@ class StoreStorageRepository extends AbstractRepository implements StoreStorageR
             ->find();
     }
 
-    /**
-     * @param \Propel\Runtime\ActiveQuery\ModelCriteria $query
-     * @param \Generated\Shared\Transfer\PaginationTransfer $paginationTransfer
-     *
-     * @return \Propel\Runtime\ActiveQuery\ModelCriteria
-     */
     protected function preparePagination(ModelCriteria $query, PaginationTransfer $paginationTransfer): ModelCriteria
     {
         if ($paginationTransfer->getOffset() || $paginationTransfer->getLimit()) {

@@ -15,11 +15,6 @@ use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
  */
 class StoreStorageEntityManager extends AbstractEntityManager implements StoreStorageEntityManagerInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\StoreStorageTransfer $storeStorageTransfer
-     *
-     * @return void
-     */
     public function updateStoreStorage(StoreStorageTransfer $storeStorageTransfer): void
     {
         $storeStorageEntity = $this->getFactory()

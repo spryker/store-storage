@@ -52,9 +52,6 @@ class StoreStoragePublisherTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -67,9 +64,6 @@ class StoreStoragePublisherTest extends Unit
         });
     }
 
-    /**
-     * @return void
-     */
     public function testStoreWritePublisherStoreData(): void
     {
         // Arrange
@@ -94,9 +88,6 @@ class StoreStoragePublisherTest extends Unit
         $this->assertSame($storeTransfer->getName(), $storeStorageEntity->getData()[static::DATA_KEY_STORE_NAME]);
     }
 
-    /**
-     * @return \Spryker\Shared\Store\Dependency\Adapter\StoreToStoreInterface
-     */
     protected function getStoreToStoreInterface(): StoreToStoreInterface
     {
         $storeToStoreInterfaceMock = $this->getMockBuilder(StoreToStoreInterface::class)->getMock();

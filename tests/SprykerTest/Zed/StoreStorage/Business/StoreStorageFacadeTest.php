@@ -50,9 +50,6 @@ class StoreStorageFacadeTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -65,9 +62,6 @@ class StoreStorageFacadeTest extends Unit
         });
     }
 
-    /**
-     * @return void
-     */
     public function testGetStoreStorageSynchronizationDataTransfersReturnsNotEmptyArray(): void
     {
         // Arrange
@@ -92,9 +86,6 @@ class StoreStorageFacadeTest extends Unit
         $this->assertCount(1, $synchronizationDataTransfers);
     }
 
-    /**
-     * @return void
-     */
     public function testGetStoreStorageSynchronizationDataTransfersReturnsEmptyArray(): void
     {
         // Act

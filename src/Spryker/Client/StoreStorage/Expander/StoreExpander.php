@@ -17,19 +17,11 @@ class StoreExpander implements StoreExpanderInterface
      */
     protected $storeReader;
 
-    /**
-     * @param \Spryker\Client\StoreStorage\Reader\StoreStorageReaderInterface $storeReader
-     */
     public function __construct(StoreStorageReaderInterface $storeReader)
     {
         $this->storeReader = $storeReader;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\StoreTransfer $storeTransfer
-     *
-     * @return \Generated\Shared\Transfer\StoreTransfer
-     */
     public function expandStore(StoreTransfer $storeTransfer): StoreTransfer
     {
         $storeStorageTransfer = $this->storeReader->findStoreByName($storeTransfer->getNameOrFail());

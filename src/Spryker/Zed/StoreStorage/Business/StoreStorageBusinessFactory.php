@@ -21,9 +21,6 @@ use Spryker\Zed\StoreStorage\StoreStorageDependencyProvider;
  */
 class StoreStorageBusinessFactory extends AbstractBusinessFactory
 {
-    /**
-     * @return \Spryker\Zed\StoreStorage\Business\Writer\StoreStorageWriterInterface
-     */
     public function createStoreStorageWriter(): StoreStorageWriterInterface
     {
         return new StoreStorageWriter(
@@ -33,17 +30,11 @@ class StoreStorageBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\StoreStorage\Dependency\Facade\StoreStorageToStoreFacadeInterface
-     */
     public function getStoreFacade(): StoreStorageToStoreFacadeInterface
     {
         return $this->getProvidedDependency(StoreStorageDependencyProvider::FACADE_STORE);
     }
 
-    /**
-     * @return \Spryker\Zed\StoreStorage\Dependency\Facade\StoreStorageToEventBehaviorFacadeInterface
-     */
     public function getEventBehaviorFacade(): StoreStorageToEventBehaviorFacadeInterface
     {
         return $this->getProvidedDependency(StoreStorageDependencyProvider::FACADE_EVENT_BEHAVIOR);

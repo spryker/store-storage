@@ -25,10 +25,6 @@ class StoreStorageReader implements StoreStorageReaderInterface
      */
     protected $storageClient;
 
-    /**
-     * @param \Spryker\Client\StoreStorage\Dependency\Service\StoreStorageToSynchronizationServiceInterface $synchronizationService
-     * @param \Spryker\Client\StoreStorage\Dependency\Client\StoreStorageToStorageClientInterface $storageClient
-     */
     public function __construct(
         StoreStorageToSynchronizationServiceInterface $synchronizationService,
         StoreStorageToStorageClientInterface $storageClient
@@ -37,11 +33,6 @@ class StoreStorageReader implements StoreStorageReaderInterface
         $this->storageClient = $storageClient;
     }
 
-    /**
-     * @param string $name
-     *
-     * @return \Generated\Shared\Transfer\StoreStorageTransfer|null
-     */
     public function findStoreByName(string $name): ?StoreStorageTransfer
     {
         $storeKey = $this->generateKey($name);
@@ -54,11 +45,6 @@ class StoreStorageReader implements StoreStorageReaderInterface
         return (new StoreStorageTransfer())->fromArray($storeData, true);
     }
 
-    /**
-     * @param string $name
-     *
-     * @return string
-     */
     protected function generateKey(string $name): string
     {
         $synchronizationDataTransfer = new SynchronizationDataTransfer();

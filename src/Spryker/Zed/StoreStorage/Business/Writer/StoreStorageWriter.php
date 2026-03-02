@@ -34,11 +34,6 @@ class StoreStorageWriter implements StoreStorageWriterInterface
      */
     protected $storeStorageEntityManager;
 
-    /**
-     * @param \Spryker\Zed\StoreStorage\Dependency\Facade\StoreStorageToStoreFacadeInterface $storeFacade
-     * @param \Spryker\Zed\StoreStorage\Dependency\Facade\StoreStorageToEventBehaviorFacadeInterface $eventBehaviorFacade
-     * @param \Spryker\Zed\StoreStorage\Persistence\StoreStorageEntityManagerInterface $storeStorageEntityManager
-     */
     public function __construct(
         StoreStorageToStoreFacadeInterface $storeFacade,
         StoreStorageToEventBehaviorFacadeInterface $eventBehaviorFacade,
@@ -144,9 +139,6 @@ class StoreStorageWriter implements StoreStorageWriterInterface
         $this->updateStoreListStorage();
     }
 
-    /**
-     * @return void
-     */
     protected function updateStoreListStorage(): void
     {
         $storeNames = [];

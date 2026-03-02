@@ -11,10 +11,5 @@ use Generated\Shared\Transfer\StoreStorageTransfer;
 
 interface StoreStorageReaderInterface
 {
-    /**
-     * @param string $name
-     *
-     * @return \Generated\Shared\Transfer\StoreStorageTransfer|null
-     */
     public function findStoreByName(string $name): ?StoreStorageTransfer;
 }

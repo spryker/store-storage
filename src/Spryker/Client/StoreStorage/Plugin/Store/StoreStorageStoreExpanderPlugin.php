@@ -16,11 +16,6 @@ use Spryker\Client\StoreExtension\Dependency\Plugin\StoreExpanderPluginInterface
  */
 class StoreStorageStoreExpanderPlugin extends AbstractPlugin implements StoreExpanderPluginInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\StoreTransfer $storeTransfer
-     *
-     * @return \Generated\Shared\Transfer\StoreTransfer
-     */
     public function expand(StoreTransfer $storeTransfer): StoreTransfer
     {
         return $this->getFactory()

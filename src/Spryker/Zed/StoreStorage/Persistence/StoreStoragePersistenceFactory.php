@@ -18,17 +18,11 @@ use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
  */
 class StoreStoragePersistenceFactory extends AbstractPersistenceFactory
 {
-    /**
-     * @return \Orm\Zed\StoreStorage\Persistence\SpyStoreStorageQuery
-     */
     public function createStoreStorageQuery(): SpyStoreStorageQuery
     {
         return SpyStoreStorageQuery::create();
     }
 
-    /**
-     * @return \Orm\Zed\StoreStorage\Persistence\SpyStoreListStorageQuery
-     */
     public function createStoreListStorageQuery(): SpyStoreListStorageQuery
     {
         return SpyStoreListStorageQuery::create();

@@ -53,9 +53,6 @@ class CurrencyStoreStoragePublisherTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -68,9 +65,6 @@ class CurrencyStoreStoragePublisherTest extends Unit
         });
     }
 
-    /**
-     * @return void
-     */
     public function testStoreCurrencyWritePublisherStoreData(): void
     {
         // Arrange
@@ -98,9 +92,6 @@ class CurrencyStoreStoragePublisherTest extends Unit
         $this->assertSame($storeTransfer->getName(), $storeStorageEntity->getData()[static::DATA_KEY_STORE_NAME]);
     }
 
-    /**
-     * @return \Spryker\Shared\Store\Dependency\Adapter\StoreToStoreInterface
-     */
     protected function getStoreToStoreInterface(): StoreToStoreInterface
     {
         $storeToStoreInterfaceMock = $this->getMockBuilder(StoreToStoreInterface::class)->getMock();

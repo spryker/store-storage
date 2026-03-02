@@ -55,9 +55,6 @@ class CountryStoreStoragePublisherTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -70,9 +67,6 @@ class CountryStoreStoragePublisherTest extends Unit
         });
     }
 
-    /**
-     * @return void
-     */
     public function testStoreCountryWritePublisherStoreData(): void
     {
         // Arrange

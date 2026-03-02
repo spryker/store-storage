@@ -20,17 +20,11 @@ use Spryker\Zed\StoreStorage\StoreStorageDependencyProvider;
  */
 class StoreStorageCommunicationFactory extends AbstractCommunicationFactory
 {
-    /**
-     * @return \Spryker\Zed\StoreStorage\Dependency\Facade\StoreStorageToStoreFacadeInterface
-     */
     public function getStoreFacade(): StoreStorageToStoreFacadeInterface
     {
         return $this->getProvidedDependency(StoreStorageDependencyProvider::FACADE_STORE);
     }
 
-    /**
-     * @return \Spryker\Zed\StoreStorage\Dependency\Facade\StoreStorageToSynchronizationFacadeInterface
-     */
     public function getSynchronizationFacade(): StoreStorageToSynchronizationFacadeInterface
     {
         return $this->getProvidedDependency(StoreStorageDependencyProvider::FACADE_SYNCHRONIZATION);
