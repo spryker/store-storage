@@ -15,6 +15,11 @@ use Spryker\Shared\StoreStorage\StoreStorageConfig;
 class StoreListReader
 {
     /**
+     * @var array<string>|null
+     */
+    protected static ?array $storeListCache = null;
+
+    /**
      * @var \Spryker\Client\StoreStorage\Dependency\Service\StoreStorageToSynchronizationServiceInterface
      */
     protected $synchronizationService;
@@ -37,11 +42,15 @@ class StoreListReader
      */
     public function getStoresNames(): array
     {
-        $storeData = $this->storageClient->get(
-            $this->generateKey(),
-        );
+        if (static::$storeListCache === null) {
+            $storeData = $this->storageClient->get(
+                $this->generateKey(),
+            );
 
-        return $storeData['stores'] ?? [];
+            static::$storeListCache = $storeData['stores'] ?? [];
+        }
+
+        return static::$storeListCache;
     }
 
     protected function generateKey(): string
