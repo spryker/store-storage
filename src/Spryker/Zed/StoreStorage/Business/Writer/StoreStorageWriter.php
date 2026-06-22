@@ -133,6 +133,11 @@ class StoreStorageWriter implements StoreStorageWriterInterface
         $storeCollectionTransfer = $this->storeFacade->getStoreCollection($storeCriteriaTransfer);
 
         foreach ($storeCollectionTransfer->getStores() as $storeTransfer) {
+            // Skip stores with incomplete data (e.g. locale table empty at import time before setup:init-db).
+            if ($storeTransfer->getDefaultLocaleIsoCode() === null) {
+                continue;
+            }
+
             $storeStorageTransfer = (new StoreStorageTransfer())->fromArray($storeTransfer->toArray(), true);
             $this->storeStorageEntityManager->updateStoreStorage($storeStorageTransfer);
         }
