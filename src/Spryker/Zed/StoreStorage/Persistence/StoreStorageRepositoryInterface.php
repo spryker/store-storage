@@ -26,4 +26,9 @@ interface StoreStorageRepositoryInterface
      * @return array<\Generated\Shared\Transfer\SynchronizationDataTransfer>
      */
     public function getStoreListStorageSynchronizationDataTransfers(FilterTransfer $filterTransfer, array $ids): array;
+
+    /**
+     * @return array<string>
+     */
+    public function getStoreNames(): array;
 }

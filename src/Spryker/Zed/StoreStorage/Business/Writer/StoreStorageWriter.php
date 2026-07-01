@@ -13,9 +13,11 @@ use Generated\Shared\Transfer\StoreStorageTransfer;
 use Orm\Zed\Country\Persistence\Map\SpyCountryStoreTableMap;
 use Orm\Zed\Currency\Persistence\Map\SpyCurrencyStoreTableMap;
 use Orm\Zed\Locale\Persistence\Map\SpyLocaleStoreTableMap;
+use Spryker\Shared\Kernel\Store;
 use Spryker\Zed\StoreStorage\Dependency\Facade\StoreStorageToEventBehaviorFacadeInterface;
 use Spryker\Zed\StoreStorage\Dependency\Facade\StoreStorageToStoreFacadeInterface;
 use Spryker\Zed\StoreStorage\Persistence\StoreStorageEntityManagerInterface;
+use Spryker\Zed\StoreStorage\Persistence\StoreStorageRepositoryInterface;
 
 class StoreStorageWriter implements StoreStorageWriterInterface
 {
@@ -34,14 +36,18 @@ class StoreStorageWriter implements StoreStorageWriterInterface
      */
     protected $storeStorageEntityManager;
 
+    protected StoreStorageRepositoryInterface $storeStorageRepository;
+
     public function __construct(
         StoreStorageToStoreFacadeInterface $storeFacade,
         StoreStorageToEventBehaviorFacadeInterface $eventBehaviorFacade,
-        StoreStorageEntityManagerInterface $storeStorageEntityManager
+        StoreStorageEntityManagerInterface $storeStorageEntityManager,
+        StoreStorageRepositoryInterface $storeStorageRepository
     ) {
         $this->storeFacade = $storeFacade;
         $this->eventBehaviorFacade = $eventBehaviorFacade;
         $this->storeStorageEntityManager = $storeStorageEntityManager;
+        $this->storeStorageRepository = $storeStorageRepository;
     }
 
     /**
@@ -146,11 +152,25 @@ class StoreStorageWriter implements StoreStorageWriterInterface
 
     protected function updateStoreListStorage(): void
     {
+        $storeNames = $this->getStoreNames();
+
+        $this->storeStorageEntityManager->updateStoreList($storeNames);
+    }
+
+    /**
+     * @return array<string>
+     */
+    protected function getStoreNames(): array
+    {
+        if (Store::isDynamicStoreMode()) {
+            return $this->storeStorageRepository->getStoreNames();
+        }
+
         $storeNames = [];
         foreach ($this->storeFacade->getAllStores() as $storeTransfer) {
             $storeNames[] = $storeTransfer->getNameOrFail();
         }
 
-        $this->storeStorageEntityManager->updateStoreList($storeNames);
+        return $storeNames;
     }
 }

@@ -27,6 +27,7 @@ class StoreStorageBusinessFactory extends AbstractBusinessFactory
             $this->getStoreFacade(),
             $this->getEventBehaviorFacade(),
             $this->getEntityManager(),
+            $this->getRepository(),
         );
     }
 

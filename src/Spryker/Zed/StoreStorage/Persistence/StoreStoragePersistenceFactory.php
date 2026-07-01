@@ -7,6 +7,7 @@
 
 namespace Spryker\Zed\StoreStorage\Persistence;
 
+use Orm\Zed\Store\Persistence\SpyStoreQuery;
 use Orm\Zed\StoreStorage\Persistence\SpyStoreListStorageQuery;
 use Orm\Zed\StoreStorage\Persistence\SpyStoreStorageQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
@@ -26,5 +27,10 @@ class StoreStoragePersistenceFactory extends AbstractPersistenceFactory
     public function createStoreListStorageQuery(): SpyStoreListStorageQuery
     {
         return SpyStoreListStorageQuery::create();
+    }
+
+    public function createStoreQuery(): SpyStoreQuery
+    {
+        return SpyStoreQuery::create();
     }
 }
