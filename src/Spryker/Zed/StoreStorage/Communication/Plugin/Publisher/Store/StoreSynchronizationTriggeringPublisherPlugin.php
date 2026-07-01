@@ -7,7 +7,6 @@
 
 namespace Spryker\Zed\StoreStorage\Communication\Plugin\Publisher\Store;
 
-use Generated\Shared\Transfer\EventEntityTransfer;
 use Spryker\Shared\StoreStorage\StoreStorageConfig;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\PublisherExtension\Dependency\Plugin\PublisherPluginInterface;
@@ -39,7 +38,7 @@ class StoreSynchronizationTriggeringPublisherPlugin extends AbstractPlugin imple
         $this->getFactory()->getSynchronizationFacade()
             ->executeResolvedPluginsBySourcesWithIds(
                 $this->getConfig()->getStoreCreationResourcesToReSync(),
-                array_map(fn (EventEntityTransfer $eventEntityTransfer) => (int)$eventEntityTransfer->getId(), $eventEntityTransfers),
+                [],
             );
     }
 
