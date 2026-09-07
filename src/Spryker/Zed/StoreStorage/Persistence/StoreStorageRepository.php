@@ -12,6 +12,7 @@ use Generated\Shared\Transfer\PaginationTransfer;
 use Generated\Shared\Transfer\StoreStorageCriteriaTransfer;
 use Generated\Shared\Transfer\SynchronizationDataTransfer;
 use Orm\Zed\Store\Persistence\Map\SpyStoreTableMap;
+use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\ActiveQuery\ModelCriteria;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 use Spryker\Zed\Synchronization\Persistence\Propel\Formatter\SynchronizationDataTransferObjectFormatter;
@@ -82,6 +83,7 @@ class StoreStorageRepository extends AbstractRepository implements StoreStorageR
     {
         return $this->getFactory()
             ->createStoreQuery()
+            ->filterByFkLocale(null, Criteria::ISNOTNULL)
             ->select(SpyStoreTableMap::COL_NAME)
             ->find()
             ->getData();

@@ -8,6 +8,8 @@
 namespace SprykerTest\Zed\StoreStorage;
 
 use Codeception\Actor;
+use Orm\Zed\StoreStorage\Persistence\SpyStoreListStorage;
+use Orm\Zed\StoreStorage\Persistence\SpyStoreListStorageQuery;
 use Orm\Zed\StoreStorage\Persistence\SpyStoreStorage;
 use Orm\Zed\StoreStorage\Persistence\SpyStoreStorageQuery;
 
@@ -41,8 +43,32 @@ class StoreStorageCommunicationTester extends Actor
         return $this->createStoreStoragePropelQuery()->findOneByFkStore($idStore);
     }
 
+    public function findStoreListStorageEntity(): ?SpyStoreListStorage
+    {
+        return $this->createStoreListStoragePropelQuery()->findOne();
+    }
+
+    public function haveStoreStorageEntity(int $idStore, string $storeName): SpyStoreStorage
+    {
+        $storeStorageEntity = $this->createStoreStoragePropelQuery()
+            ->filterByFkStore($idStore)
+            ->findOneOrCreate();
+
+        $storeStorageEntity
+            ->setStoreName($storeName)
+            ->setData(['id_store' => $idStore, 'name' => $storeName])
+            ->save();
+
+        return $storeStorageEntity;
+    }
+
     protected function createStoreStoragePropelQuery(): SpyStoreStorageQuery
     {
         return SpyStoreStorageQuery::create();
+    }
+
+    protected function createStoreListStoragePropelQuery(): SpyStoreListStorageQuery
+    {
+        return SpyStoreListStorageQuery::create();
     }
 }

@@ -10,6 +10,7 @@ namespace Spryker\Zed\StoreStorage\Business\Writer;
 use Generated\Shared\Transfer\StoreConditionsTransfer;
 use Generated\Shared\Transfer\StoreCriteriaTransfer;
 use Generated\Shared\Transfer\StoreStorageTransfer;
+use Generated\Shared\Transfer\StoreTransfer;
 use Orm\Zed\Country\Persistence\Map\SpyCountryStoreTableMap;
 use Orm\Zed\Currency\Persistence\Map\SpyCurrencyStoreTableMap;
 use Orm\Zed\Locale\Persistence\Map\SpyLocaleStoreTableMap;
@@ -133,20 +134,29 @@ class StoreStorageWriter implements StoreStorageWriterInterface
         $storeCriteriaTransfer = (new StoreCriteriaTransfer())
             ->setStoreConditions(
                 (new StoreConditionsTransfer())
-                    ->setStoreIds($storeIds),
+                    ->setStoreIds($storeIds)
+                    ->setWithExpanders(true),
             );
 
         $storeCollectionTransfer = $this->storeFacade->getStoreCollection($storeCriteriaTransfer);
 
+        $unpublishableStoreIds = [];
+
         foreach ($storeCollectionTransfer->getStores() as $storeTransfer) {
-            // Skip stores with incomplete data (e.g. locale table empty at import time before setup:init-db).
-            if ($storeTransfer->getDefaultLocaleIsoCode() === null) {
+            if (!$this->isStorePublishable($storeTransfer)) {
+                $unpublishableStoreIds[] = $storeTransfer->getIdStoreOrFail();
+
                 continue;
             }
 
             $storeStorageTransfer = (new StoreStorageTransfer())->fromArray($storeTransfer->toArray(), true);
             $this->storeStorageEntityManager->updateStoreStorage($storeStorageTransfer);
         }
+
+        if ($unpublishableStoreIds) {
+            $this->storeStorageEntityManager->deleteStoreStorageByStoreIds($unpublishableStoreIds);
+        }
+
         $this->updateStoreListStorage();
     }
 
@@ -168,9 +178,18 @@ class StoreStorageWriter implements StoreStorageWriterInterface
 
         $storeNames = [];
         foreach ($this->storeFacade->getAllStores() as $storeTransfer) {
+            if (!$this->isStorePublishable($storeTransfer)) {
+                continue;
+            }
+
             $storeNames[] = $storeTransfer->getNameOrFail();
         }
 
         return $storeNames;
+    }
+
+    protected function isStorePublishable(StoreTransfer $storeTransfer): bool
+    {
+        return $storeTransfer->getDefaultLocaleIsoCode() !== null;
     }
 }

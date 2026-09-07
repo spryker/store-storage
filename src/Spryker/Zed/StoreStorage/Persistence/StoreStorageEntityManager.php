@@ -40,4 +40,21 @@ class StoreStorageEntityManager extends AbstractEntityManager implements StoreSt
             ->setData(['stores' => $storeNames])
             ->save();
     }
+
+    /**
+     * @param array<int> $storeIds
+     *
+     * @return void
+     */
+    public function deleteStoreStorageByStoreIds(array $storeIds): void
+    {
+        $storeStorageEntities = $this->getFactory()
+            ->createStoreStorageQuery()
+            ->filterByFkStore_In($storeIds)
+            ->find();
+
+        foreach ($storeStorageEntities as $storeStorageEntity) {
+            $storeStorageEntity->delete();
+        }
+    }
 }

@@ -48,6 +48,16 @@ class StoreStoragePublisherTest extends Unit
     protected const STORE_NAME = 'DE';
 
     /**
+     * @var string
+     */
+    protected const STORE_NAME_WITHOUT_DEFAULT_LOCALE = 'STORE_STORAGE_TEST_NO_LOCALE';
+
+    /**
+     * @var string
+     */
+    protected const DATA_KEY_STORES = 'stores';
+
+    /**
      * @var \SprykerTest\Zed\StoreStorage\StoreStorageCommunicationTester
      */
     protected $tester;
@@ -86,6 +96,66 @@ class StoreStoragePublisherTest extends Unit
         $this->assertArrayHasKey(static::DATA_KEY_STORE_NAME, $storeStorageEntity->getData());
         $this->assertSame($storeTransfer->getIdStore(), $storeStorageEntity->getData()[static::DATA_KEY_ID_STORE]);
         $this->assertSame($storeTransfer->getName(), $storeStorageEntity->getData()[static::DATA_KEY_STORE_NAME]);
+    }
+
+    public function testGivenStoreWithoutDefaultLocaleWhenStoreIsPublishedThenItIsNotAddedToTheStoreList(): void
+    {
+        if (!$this->tester->isDynamicStoreEnabled()) {
+            $this->markTestSkipped('This test is not compatible with dynamic store disabled.');
+        }
+
+        // Arrange
+        $storeTransfer = $this->haveStoreWithoutDefaultLocale();
+
+        $eventTransfers = [
+            (new EventEntityTransfer())->setId($storeTransfer->getIdStoreOrFail()),
+        ];
+
+        // Act
+        (new StoreWritePublisherPlugin())->handleBulk($eventTransfers, StoreStorageConfig::ENTITY_SPY_STORE_CREATE);
+
+        // Assert
+        $this->assertNull($this->tester->findStoreStorageEntityByIdStore($storeTransfer->getIdStoreOrFail()));
+
+        $storeListStorageEntity = $this->tester->findStoreListStorageEntity();
+        $this->assertNotNull($storeListStorageEntity);
+        $this->assertNotContains(
+            static::STORE_NAME_WITHOUT_DEFAULT_LOCALE,
+            $storeListStorageEntity->getData()[static::DATA_KEY_STORES],
+        );
+    }
+
+    public function testGivenPublishedStoreWithoutDefaultLocaleWhenStoreIsPublishedThenItsStorageEntryIsRemoved(): void
+    {
+        if (!$this->tester->isDynamicStoreEnabled()) {
+            $this->markTestSkipped('This test is not compatible with dynamic store disabled.');
+        }
+
+        // Arrange
+        $storeTransfer = $this->haveStoreWithoutDefaultLocale();
+        $this->tester->haveStoreStorageEntity($storeTransfer->getIdStoreOrFail(), $storeTransfer->getNameOrFail());
+
+        $eventTransfers = [
+            (new EventEntityTransfer())->setId($storeTransfer->getIdStoreOrFail()),
+        ];
+
+        // Act
+        (new StoreWritePublisherPlugin())->handleBulk($eventTransfers, StoreStorageConfig::ENTITY_SPY_STORE_UPDATE);
+
+        // Assert
+        $this->assertNull($this->tester->findStoreStorageEntityByIdStore($storeTransfer->getIdStoreOrFail()));
+    }
+
+    protected function haveStoreWithoutDefaultLocale(): StoreTransfer
+    {
+        $storeTransfer = $this->tester->haveStore([
+            StoreTransfer::NAME => static::STORE_NAME_WITHOUT_DEFAULT_LOCALE,
+        ]);
+
+        $this->tester->setDependency(StoreDependencyProvider::STORE, $this->getStoreToStoreInterface());
+        $this->tester->setDependency(StoreDependencyProvider::SERVICE_STORE, $storeTransfer->getName());
+
+        return $storeTransfer;
     }
 
     protected function getStoreToStoreInterface(): StoreToStoreInterface
