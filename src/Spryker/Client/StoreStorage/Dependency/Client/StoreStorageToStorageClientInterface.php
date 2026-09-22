@@ -10,8 +10,6 @@ namespace Spryker\Client\StoreStorage\Dependency\Client;
 interface StoreStorageToStorageClientInterface
 {
     /**
-     * @param string $key
-     *
      * @return mixed
      */
     public function get(string $key);

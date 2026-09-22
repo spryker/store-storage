@@ -13,8 +13,6 @@ class StoreStorageConfig extends AbstractBundleConfig
 {
     /**
      * @api
-     *
-     * @return string|null
      */
     public function getStoreSynchronizationPoolName(): ?string
     {

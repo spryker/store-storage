@@ -20,8 +20,6 @@ interface StoreStorageFacadeInterface
      * @api
      *
      * @param array<\Generated\Shared\Transfer\EventEntityTransfer> $eventTransfers
-     *
-     * @return void
      */
     public function writeCollectionByStoreEvents(array $eventTransfers): void;
 
@@ -34,8 +32,6 @@ interface StoreStorageFacadeInterface
      * @api
      *
      * @param array<\Generated\Shared\Transfer\EventEntityTransfer> $eventTransfers
-     *
-     * @return void
      */
     public function writeCollectionByLocaleStoreEvents(array $eventTransfers): void;
 
@@ -48,8 +44,6 @@ interface StoreStorageFacadeInterface
      * @api
      *
      * @param array<\Generated\Shared\Transfer\EventEntityTransfer> $eventTransfers
-     *
-     * @return void
      */
     public function writeCollectionByCurrencyStoreEvents(array $eventTransfers): void;
 
@@ -62,8 +56,6 @@ interface StoreStorageFacadeInterface
      * @api
      *
      * @param array<\Generated\Shared\Transfer\EventEntityTransfer> $eventTransfers
-     *
-     * @return void
      */
     public function writeCollectionByCountryStoreEvents(array $eventTransfers): void;
 
@@ -72,8 +64,6 @@ interface StoreStorageFacadeInterface
      * - Returns SynchronizationData transfers for StoreStorage entities based on filter and ids.
      *
      * @api
-     *
-     * @param \Generated\Shared\Transfer\StoreStorageCriteriaTransfer $storeStorageCriteriaTransfer
      *
      * @return array<\Generated\Shared\Transfer\SynchronizationDataTransfer>
      */

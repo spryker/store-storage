@@ -23,8 +23,6 @@ use Spryker\Zed\Synchronization\Persistence\Propel\Formatter\SynchronizationData
 class StoreStorageRepository extends AbstractRepository implements StoreStorageRepositoryInterface
 {
     /**
-     * @param \Generated\Shared\Transfer\StoreStorageCriteriaTransfer $storeStorageCriteriaTransfer
-     *
      * @return array<\Generated\Shared\Transfer\SynchronizationDataTransfer>
      */
     public function getStoreStorageSynchronizationDataTransfers(StoreStorageCriteriaTransfer $storeStorageCriteriaTransfer): array
@@ -57,7 +55,6 @@ class StoreStorageRepository extends AbstractRepository implements StoreStorageR
     }
 
     /**
-     * @param \Generated\Shared\Transfer\FilterTransfer $filterTransfer
      * @param array<int> $storeListStorageIds
      *
      * @return array<\Generated\Shared\Transfer\SynchronizationDataTransfer>
@@ -81,12 +78,23 @@ class StoreStorageRepository extends AbstractRepository implements StoreStorageR
      */
     public function getStoreNames(): array
     {
-        return $this->getFactory()
+        $storeQuery = $this->getFactory()
             ->createStoreQuery()
-            ->filterByFkLocale(null, Criteria::ISNOTNULL)
+            ->filterByFkLocale(null, Criteria::ISNOTNULL);
+
+        if ($this->isVisibleToCustomerSupported()) {
+            $storeQuery->filterByIsVisibleToCustomer(true);
+        }
+
+        return $storeQuery
             ->select(SpyStoreTableMap::COL_NAME)
             ->find()
             ->getData();
+    }
+
+    protected function isVisibleToCustomerSupported(): bool
+    {
+        return defined(SpyStoreTableMap::class . '::COL_IS_VISIBLE_TO_CUSTOMER');
     }
 
     protected function preparePagination(ModelCriteria $query, PaginationTransfer $paginationTransfer): ModelCriteria

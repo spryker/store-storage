@@ -34,7 +34,6 @@ class StoreStorageToEventBehaviorFacadeBridge implements StoreStorageToEventBeha
 
     /**
      * @param array<mixed> $eventTransfers
-     * @param string $foreignKeyColumnName
      *
      * @return array<mixed>
      */

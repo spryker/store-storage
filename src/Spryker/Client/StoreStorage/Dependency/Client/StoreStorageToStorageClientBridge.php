@@ -23,8 +23,6 @@ class StoreStorageToStorageClientBridge implements StoreStorageToStorageClientIn
     }
 
     /**
-     * @param string $key
-     *
      * @return mixed
      */
     public function get(string $key)

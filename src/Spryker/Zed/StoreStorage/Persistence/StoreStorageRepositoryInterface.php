@@ -13,14 +13,11 @@ use Generated\Shared\Transfer\StoreStorageCriteriaTransfer;
 interface StoreStorageRepositoryInterface
 {
     /**
-     * @param \Generated\Shared\Transfer\StoreStorageCriteriaTransfer $storeStorageCriteriaTransfer
-     *
      * @return array<\Generated\Shared\Transfer\SynchronizationDataTransfer>
      */
     public function getStoreStorageSynchronizationDataTransfers(StoreStorageCriteriaTransfer $storeStorageCriteriaTransfer): array;
 
     /**
-     * @param \Generated\Shared\Transfer\FilterTransfer $filterTransfer
      * @param array<int> $ids
      *
      * @return array<\Generated\Shared\Transfer\SynchronizationDataTransfer>

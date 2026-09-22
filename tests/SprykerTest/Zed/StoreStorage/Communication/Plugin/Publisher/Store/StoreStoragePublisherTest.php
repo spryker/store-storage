@@ -55,6 +55,11 @@ class StoreStoragePublisherTest extends Unit
     /**
      * @var string
      */
+    protected const STORE_NAME_HIDDEN = 'STORE_STORAGE_TEST_HIDDEN';
+
+    /**
+     * @var string
+     */
     protected const DATA_KEY_STORES = 'stores';
 
     /**
@@ -144,6 +149,34 @@ class StoreStoragePublisherTest extends Unit
 
         // Assert
         $this->assertNull($this->tester->findStoreStorageEntityByIdStore($storeTransfer->getIdStoreOrFail()));
+    }
+
+    public function testGivenHiddenStoreWhenStoreIsPublishedThenItIsNotAddedToTheStoreListAndItsStorageEntryIsRemoved(): void
+    {
+        // Arrange
+        $storeTransfer = $this->tester->haveStore([
+            StoreTransfer::NAME => static::STORE_NAME_HIDDEN,
+            StoreTransfer::IS_VISIBLE_TO_CUSTOMER => false,
+        ]);
+        $this->tester->setDependency(StoreDependencyProvider::STORE, $this->getStoreToStoreInterface());
+        $this->tester->setDependency(StoreDependencyProvider::SERVICE_STORE, $storeTransfer->getName());
+
+        $eventTransfers = [
+            (new EventEntityTransfer())->setId($storeTransfer->getIdStoreOrFail()),
+        ];
+
+        // Act
+        (new StoreWritePublisherPlugin())->handleBulk($eventTransfers, StoreStorageConfig::ENTITY_SPY_STORE_CREATE);
+
+        // Assert
+        $this->assertNull($this->tester->findStoreStorageEntityByIdStore($storeTransfer->getIdStoreOrFail()));
+
+        $storeListStorageEntity = $this->tester->findStoreListStorageEntity();
+        $this->assertNotNull($storeListStorageEntity);
+        $this->assertNotContains(
+            static::STORE_NAME_HIDDEN,
+            $storeListStorageEntity->getData()[static::DATA_KEY_STORES],
+        );
     }
 
     protected function haveStoreWithoutDefaultLocale(): StoreTransfer

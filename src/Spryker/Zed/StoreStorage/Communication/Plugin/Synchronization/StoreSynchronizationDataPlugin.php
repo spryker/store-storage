@@ -104,11 +104,7 @@ class StoreSynchronizationDataPlugin extends AbstractPlugin implements Synchroni
     }
 
     /**
-     * @param int $offset
-     * @param int $limit
      * @param array<int> $ids
-     *
-     * @return \Generated\Shared\Transfer\StoreStorageCriteriaTransfer
      */
     protected function createStoreStorageCriteriaTransfer(int $offset, int $limit, array $ids): StoreStorageCriteriaTransfer
     {

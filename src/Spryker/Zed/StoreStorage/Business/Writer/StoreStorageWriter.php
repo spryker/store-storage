@@ -53,8 +53,6 @@ class StoreStorageWriter implements StoreStorageWriterInterface
 
     /**
      * @param array<\Generated\Shared\Transfer\EventEntityTransfer> $eventTransfers
-     *
-     * @return void
      */
     public function writeCollectionByStoreEvents(array $eventTransfers): void
     {
@@ -69,8 +67,6 @@ class StoreStorageWriter implements StoreStorageWriterInterface
 
     /**
      * @param array<\Generated\Shared\Transfer\EventEntityTransfer> $eventTransfers
-     *
-     * @return void
      */
     public function writeCollectionByLocaleStoreEvents(array $eventTransfers): void
     {
@@ -88,8 +84,6 @@ class StoreStorageWriter implements StoreStorageWriterInterface
 
     /**
      * @param array<\Generated\Shared\Transfer\EventEntityTransfer> $eventTransfers
-     *
-     * @return void
      */
     public function writeCollectionByCurrencyStoreEvents(array $eventTransfers): void
     {
@@ -107,8 +101,6 @@ class StoreStorageWriter implements StoreStorageWriterInterface
 
     /**
      * @param array<\Generated\Shared\Transfer\EventEntityTransfer> $eventTransfers
-     *
-     * @return void
      */
     public function writeCollectionByCountryStoreEvents(array $eventTransfers): void
     {
@@ -126,8 +118,6 @@ class StoreStorageWriter implements StoreStorageWriterInterface
 
     /**
      * @param array<int> $storeIds
-     *
-     * @return void
      */
     protected function writeCollectionByStoreIds(array $storeIds): void
     {
@@ -190,6 +180,7 @@ class StoreStorageWriter implements StoreStorageWriterInterface
 
     protected function isStorePublishable(StoreTransfer $storeTransfer): bool
     {
-        return $storeTransfer->getDefaultLocaleIsoCode() !== null;
+        return $storeTransfer->getDefaultLocaleIsoCode() !== null
+            && $storeTransfer->getIsVisibleToCustomer() !== false;
     }
 }

@@ -12,8 +12,6 @@ interface StoreStorageToSynchronizationFacadeInterface
     /**
      * @param array<string> $resources
      * @param array<int> $ids
-     *
-     * @return void
      */
     public function executeResolvedPluginsBySourcesWithIds(array $resources, array $ids): void;
 }

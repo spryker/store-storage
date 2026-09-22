@@ -29,8 +29,6 @@ class StoreStorageEntityManager extends AbstractEntityManager implements StoreSt
 
     /**
      * @param array<string> $storeNames
-     *
-     * @return void
      */
     public function updateStoreList(array $storeNames): void
     {
@@ -43,8 +41,6 @@ class StoreStorageEntityManager extends AbstractEntityManager implements StoreSt
 
     /**
      * @param array<int> $storeIds
-     *
-     * @return void
      */
     public function deleteStoreStorageByStoreIds(array $storeIds): void
     {

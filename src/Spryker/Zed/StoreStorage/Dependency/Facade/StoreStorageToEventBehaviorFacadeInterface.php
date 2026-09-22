@@ -18,7 +18,6 @@ interface StoreStorageToEventBehaviorFacadeInterface
 
     /**
      * @param array<\Generated\Shared\Transfer\EventEntityTransfer> $eventTransfers
-     * @param string $foreignKeyColumnName
      *
      * @return array<mixed>
      */

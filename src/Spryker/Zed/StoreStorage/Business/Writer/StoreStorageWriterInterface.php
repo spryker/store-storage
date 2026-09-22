@@ -11,29 +11,21 @@ interface StoreStorageWriterInterface
 {
     /**
      * @param array<\Generated\Shared\Transfer\EventEntityTransfer> $eventTransfers
-     *
-     * @return void
      */
     public function writeCollectionByStoreEvents(array $eventTransfers): void;
 
     /**
      * @param array<\Generated\Shared\Transfer\EventEntityTransfer> $eventTransfers
-     *
-     * @return void
      */
     public function writeCollectionByLocaleStoreEvents(array $eventTransfers): void;
 
     /**
      * @param array<\Generated\Shared\Transfer\EventEntityTransfer> $eventTransfers
-     *
-     * @return void
      */
     public function writeCollectionByCurrencyStoreEvents(array $eventTransfers): void;
 
     /**
      * @param array<\Generated\Shared\Transfer\EventEntityTransfer> $eventTransfers
-     *
-     * @return void
      */
     public function writeCollectionByCountryStoreEvents(array $eventTransfers): void;
 }

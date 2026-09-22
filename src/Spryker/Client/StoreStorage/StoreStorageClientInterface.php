@@ -17,10 +17,6 @@ interface StoreStorageClientInterface
      * - Returns null if the store is not found.
      *
      * @api
-     *
-     * @param string $name
-     *
-     * @return \Generated\Shared\Transfer\StoreStorageTransfer|null
      */
     public function findStoreByName(string $name): ?StoreStorageTransfer;
 
